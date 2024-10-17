@@ -36,7 +36,7 @@ public class EmployeeController {
     @PostMapping("/")
     public String addEmployee(@ModelAttribute Employee employee) {
         employeeRepository.save(employee); // Save the new employee to the database
-        return "redirect:/employees/"; // Redirect to the list of employees after saving
+        return "redirect:/"; // Redirect to the list of employees after saving
     }
 
     // Update: Show form to edit an existing employee
@@ -55,13 +55,13 @@ public class EmployeeController {
     public String updateEmployee(@PathVariable("id") Long id, @ModelAttribute Employee updatedEmployee) {
         updatedEmployee.setId(id); // Set the ID of the updated employee
         employeeRepository.save(updatedEmployee); // Save changes to the database
-        return "redirect:/employees/"; // Redirect to the list of employees after updating
+        return "redirect:/"; // Redirect to the list of employees after updating
     }
 
     // Delete: Delete an existing employee
     @GetMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable("id") Long id) {
         employeeRepository.deleteById(id); // Delete the employee from the database
-        return "redirect:/employees/"; // Redirect to the list of employees after deleting
+        return "redirect:/"; // Redirect to the list of employees after deleting
     }
 }

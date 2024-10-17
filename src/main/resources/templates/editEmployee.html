@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Employee</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container col-md-6 mt-4">
+  <h2 class="text text-primary">EDIT EMPLOYEE</h2>
+  <form th:action="@{/update/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" th:field="*{name}" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" id="address" th:field="*{address}" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" id="age" th:field="*{age}" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      <input type="text" id="image" th:field="*{image}" class="form-control" required>
+    </div>
+    <!-- Hidden field to store the employee ID -->
+    <input type="hidden" th:field="*{id}" />
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary mt-3">Update Employee</button>
+  </form>
+</div>
+
+<!-- Optional: Include Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuh9g7K0s8eF3D0E+0Hn9x5L2b5cZ9g0e7dH9e9vMZlPzK4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-8qPpT8uG6n0D0s0Y0Ff8G5d0N0G5N0G5N0G5N0G5N0G5N0G5N0G5N0G5N0G5N0" crossorigin="anonymous"></script>
+</body>
+</html>
