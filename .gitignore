@@ -31,3 +31,16 @@ build/
 
 ### VS Code ###
 .vscode/
+###
+#*.application.properties
+# Ignore application.properties
+!**/resources/application.properties
+
+### VS Code ###
+.mvnw
+.mvnw.cmd
+.pom.xml
+###
+#*.application.properties
+# Ignore application.properties
+!**/resources/application.properties
