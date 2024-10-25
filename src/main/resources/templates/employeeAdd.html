@@ -1,0 +1,6 @@
+<h2 class="text-center text-primary">ADD EMPLOYEE</h2>
+<fieldset class="form-group">
+    <label>Employee name </label>
+    <input class="form-control" type="text" th:field="*{name}">
+    <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" />
+</fieldset>

@@ -1,10 +1,13 @@
 package com.example.springboot1.Controller;
 
+import com.example.springboot1.repository.CompanyRepository;
+import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import com.example.springboot1.model.Employee;
 import com.example.springboot1.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -12,7 +15,10 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     EmployeeRepository employeeRepository;
+    @Autowired
+    CompanyRepository companyRepository;
     @GetMapping("/")
+//    @RequestMapping(value = "/list")
     public String getAllEmployee(Model model) {
         List<Employee> employees = employeeRepository.findAll();
         System.out.println("employees");
@@ -56,6 +62,23 @@ public class EmployeeController {
         updatedEmployee.setId(id); // Set the ID of the updated employee
         employeeRepository.save(updatedEmployee); // Save changes to the database
         return "redirect:/"; // Redirect to the list of employees after updating
+    }
+
+    @RequestMapping(value = "/save")
+    public String saveUpdate(
+            @RequestParam(value = "id", required = false) Long id,
+            @Valid Employee employee, BindingResult result)
+    {
+        if (result.hasErrors()) {
+            if (id == null) {
+                return "employeeAdd";
+            } else {
+                return "employeeUpdate";
+            }
+        }
+        employee.setId(id);
+        employeeRepository.save(employee);
+        return "redirect:/t";
     }
 
     // Delete: Delete an existing employee
