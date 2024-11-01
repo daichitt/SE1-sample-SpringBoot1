@@ -1,5 +1,6 @@
 package com.example.springboot1.Controller;
 
+import com.example.springboot1.model.Company;
 import com.example.springboot1.repository.CompanyRepository;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
@@ -40,9 +41,12 @@ public class EmployeeController {
 
     // Create: Save a new employee
     @PostMapping("/")
-    public String addEmployee(@ModelAttribute Employee employee) {
-        employeeRepository.save(employee); // Save the new employee to the database
-        return "redirect:/"; // Redirect to the list of employees after saving
+    public String addEmployee(Model model) {
+        Employee employee = new Employee();
+//        employeeRepository.save(employee); // Save the new employee to the database
+        List<Company> companies =  companyRepository.findAll();
+        model.addAttribute("companies", companies); // Create a new
+        return "redirect:/";
     }
 
     // Update: Show form to edit an existing employee
